@@ -1,40 +1,32 @@
 # Starting Price Lookup
 
-At Bell, our sales department receives thousands of calls per day from customers inquiring about the starting prices of our smartphones. One of the sales directors is very hip and loves vintage things, especially vintage graphic cards! Everyone in the department must use new computers with weak graphic cards that cannot load most of today's graphic intensive websites.
+This is a starting price lookup CLI which could fetch devices information from the [Bell Smartphone page](https://www.bell.ca/Mobility/Smartphones_and_mobile_internet_devices)
 
-To help our sales people get information quickly to serve our customers more efficiently, we need to create a program that spits out starting prices for a given phone in a CLI (Command-line interface).
+## Prerequisite
 
-## Technology
+Below is a list of required software packages needed to be installed: 
 
-Below is a list of technology to use:
+- Ruby 2.4.1
+- Google Chrome Version 77.0.3865.120 (Official Build) (64-bit)
+- ChromeDriver 77.0.3865.40
+- tty-prompt, rubygems, nokogiri, open-uri, selenium-webdriver <br/>
+Those can be installed via the command:
+```
+gem install tty-prompt
+```
+- Internet access is needed for running the CLI
 
-- You can use any programming language, we recommend: Ruby, Python, or Java
-- You can use any environment, we recommend a linux environment
-- Selenium WebDriver
-- A driver like chromedriver (chrome) or geckodriver (firefox)
+## How to run the program
+The main logic and functions are in the main.rb file. The program can be executed using the following bash command
 
-## Expectations
-
-- When a user starts the program, the user should get a welcome message
-- The program should then go to the [Bell Smartphone page](https://www.bell.ca/Mobility/Smartphones_and_mobile_internet_devices) and retrieve the names of the top 12 devices
-- The program should then give the user a list of these 12 devices that the user can choose 
-- When a device is selected, Selenium should run in the background to visit the same [webpage](https://www.bell.ca/Mobility/Smartphones_and_mobile_internet_devices) , click on the requested device, and get the starting prices for all terms listed
-- Once the price is obtained, it should print the devices's name, the prices, and their respective terms to the command-line
-
-## Things to keep in mind
-
-- You should build the CLI so that it allows the sales staff to find the price efficiently
-- How you make the CLI user-friendly is entirely up to you
-- Make sure you have a detailed README with instructions on how to run your program
-
-## How to manage your work
-
-- Create a fork of this repo
-- Make sure the repo is set to **private** and add me to the repo `jbhandari`
-- Make sure to commit your code in logical portions
-  - ex: `Added ability to fetch price`
+```
+cd starting_price_lookup/
+ruby main.rb
+```
+This program will then prompt to ask the user if they want to fetch top 12 devices from [Bell Smartphone page](https://www.bell.ca/Mobility/Smartphones_and_mobile_internet_devices). 
+If the user chooses yes, the program will then provide a list of top 12 devices as a drop-down list, and the user can then choose which specific device they want to look up prices and terms for. 
+If the user chooses no, the program will simply exit. 
 
 ## Additional Information
+Preferably this CLI should perform the web operations in the background. But because the time is limited, I cannot get the CLI to work in headless mode. I think the reason is something wrong with the version of Chrome WebDriver and headless mode supported in Chrome on MacOS. So, for now, the CLI will open the webpage and perform actions like select and click, and close the web page after operations being successfully performed. I also had a block of comment in main.rb which is the example code snippet if everything set up correctly. 
 
-- Should you need any further clarifications please do not hesitate to contact me via email at `jatin.bhandari@bell.ca`
-- Once the deadline has been reached (set by the hiring manager), the repo will be cloned and then analyzed privately

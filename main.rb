@@ -1,12 +1,10 @@
 require "tty-prompt"
-require 'json'
-require "httparty"
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
 require 'selenium-webdriver'
 
-puts "Welcome to Bell statring price CLI"
+puts "Welcome to Bell Starting Price LookUp CLI"
 prompt = TTY::Prompt.new
 option = prompt.yes?("Do you want to retrieve the names of the top 12 devices from Bell Smartphone page?")
   if option == true
@@ -17,6 +15,7 @@ option = prompt.yes?("Do you want to retrieve the names of the top 12 devices fr
     end
     top12Products = fullProductsList[0..11]
   else 
+    puts "Thank you for using Bell Starting Price LookUp CLI"
     exit
   end
 
@@ -25,6 +24,11 @@ productIndex = top12Products.index(chosenProduct)
 class ProductDetails< Struct.new(:name, :prices, :terms)
 end
 
+# Headless mode: 
+# options = Selenium::WebDriver::Chrome::Options.new
+# options.add_argument('--headless')
+# options.add_argument('--window-size=1200x764')
+#driver = Selenium::WebDriver.for :chrome, options: options
 
 driver = Selenium::WebDriver.for :chrome
 driver.get 'https://www.bell.ca/Mobility/Smartphones_and_mobile_internet_devices'
